@@ -1,3 +1,3 @@
 ---
 ---
-Hello 👋, I am a grad student at Carnegie Mellon, pursuing Master of Software Engineering in Scalable Systems.
+Hello 👋, I am a Cloud Engineer at Carnegie Robotics.
