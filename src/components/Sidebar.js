@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Scrollspy from 'react-scrollspy';
 import Scroll from './Scroll';
+import ThemeToggler from './ThemeToggler';
 
 import avatar from '../assets/images/avatar.png';
 import config from '../../config';
@@ -48,8 +49,7 @@ export class Sidebar extends Component {
           </span>
         </a>
         <button
-          className={`navbar-toggler navbar-toggler-right ${
-            isCollapsed ? 'collapsed' : ''
+          className={`navbar-toggler navbar-toggler-right ${isCollapsed ? 'collapsed' : ''
             }`}
           type="button"
           data-toggle="collapse"
@@ -81,6 +81,12 @@ export class Sidebar extends Component {
               );
             })}
           </Scrollspy>
+        </div>
+        <div className="sidebar-footer">
+          <a href={`mailto:${config.email}`} className="email-link">
+            <i className="fas fa-envelope mr-2"></i>
+          </a>
+          <ThemeToggler />
         </div>
       </nav>
     );

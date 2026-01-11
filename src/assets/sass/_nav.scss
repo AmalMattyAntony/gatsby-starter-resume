@@ -4,11 +4,80 @@
     letter-spacing: 0.05rem;
     text-transform: uppercase;
   }
+
   .navbar-toggler {
     &:focus {
-      outline-color: lighten($primary, 15%);
+      outline-color: var(--primary-dark);
     }
   }
+}
+
+/* Theme Toggler Switch */
+.theme-toggler-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 26px;
+  position: relative;
+  width: 50px;
+  margin-bottom: 0;
+  /* Bootstrap override */
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: rgba(255, 255, 255, 0.4);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 3px;
+  content: "";
+  height: 20px;
+  left: 3px;
+  position: absolute;
+  transition: .4s;
+  width: 20px;
+}
+
+input:checked+.slider {
+  background-color: var(--primary-dark);
+}
+
+input:checked+.slider:before {
+  transform: translateX(24px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.toggle-icon {
+  color: white;
+  font-size: 14px;
+  margin: 0 8px;
+  opacity: 0.8;
 }
 
 @media (min-width: 992px) {
@@ -23,17 +92,20 @@
 
     width: $sidebar-base-width;
     height: 100vh;
+
     .navbar-brand {
       display: flex;
 
-      margin: auto auto 0;
+      margin: 0 auto;
       padding: 0.5rem;
+
       .img-profile {
         max-width: 10rem;
         max-height: 10rem;
         border: 0.5rem solid fade-out($white, 0.8);
       }
     }
+
     .navbar-collapse {
       display: flex;
       align-items: flex-start;
@@ -41,16 +113,47 @@
 
       width: 100%;
       margin-bottom: auto;
+
       .navbar-nav {
         flex-direction: column;
 
         width: 100%;
+
         .nav-item {
           display: block;
+
           .nav-link {
             display: block;
           }
         }
+      }
+    }
+
+    .sidebar-footer {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+
+      .email-link {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: white;
+          transform: scale(1.1);
+        }
+      }
+
+      .theme-toggler-wrapper {
+        position: static;
+        margin: 0;
+        width: auto;
       }
     }
   }
