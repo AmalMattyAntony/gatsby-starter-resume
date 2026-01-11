@@ -1,0 +1,45 @@
+@mixin light-theme {
+    --bs-blue: #007bff;
+    --bs-cyan: #17a2b8;
+    --primary: #256CC2;
+    --primary-dark: #1b4b8a;
+
+    --bg-body: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-body: #495057;
+    --text-heading: #212529;
+
+    --sidebar-bg: var(--primary);
+    --sidebar-text: #ffffff;
+}
+
+@mixin dark-theme {
+    --bg-body: #121212;
+    --bg-secondary: #000000;
+    --text-body: #d1d5db;
+    --text-heading: #f3f4f6;
+
+    --primary: #3b82f6;
+    --primary-dark: #60a5fa;
+
+    --sidebar-bg: #0f172a;
+}
+
+:root {
+    @include light-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include dark-theme;
+    }
+}
+
+/* Manual Overrides */
+body.light-mode {
+    @include light-theme;
+}
+
+body.dark-mode {
+    @include dark-theme;
+}

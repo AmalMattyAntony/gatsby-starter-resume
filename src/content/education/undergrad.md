@@ -1,10 +1,10 @@
 ---
-school: 'PSG Institute of Technology and Applied Research'
-location: 'Coimbatore'
-course: 'B.E. Computer Science & Engineering'
+school: 'PSG INSTITUTE OF TECHNOLOGY AND APPLIED RESEARCH'
+location: 'Coimbatore, Tamil Nadu, India'
+course: 'Bachelor of Engineering - BE, Computer Science And Engineering'
 dateRange: '2015 - 2019'
-gpa: 'GPA : 8.30/10.00'
-date: '2015-08-01'
+GPA: '8.30/10.00'
+date: '2015-01-01'
 ---
 ##### Placement Representative, Department of Computer Science and Engineering 2018-19 
 - Helped in conducting various placement drives in the college, with the placement team at PSG iTech. 

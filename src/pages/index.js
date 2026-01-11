@@ -11,7 +11,7 @@ import Awards from '../components/awards';
 const IndexPage = ({ location, data }) => (
   <Layout>
 
-    <Sidebar/>
+    <Sidebar />
     <div className="container-fluid p-0">
       <section
         className="resume-section p-3 p-lg-5 d-flex align-items-center"
@@ -22,24 +22,39 @@ const IndexPage = ({ location, data }) => (
             {config.firstName}
             <span className="text-primary">{config.lastName}</span>
           </h1>
-          <div className="subheading mb-5">
-            <a href={`mailto:${config.email}`}>{config.email}</a>
-          </div>
 
           {data.intro.edges.map(
             (element) => {
               const node = element.node;
-              return <p className="lead mb-5"><p dangerouslySetInnerHTML={{ __html: node.html }}/></p>;
+              return <p className="lead mb-5"><p dangerouslySetInnerHTML={{ __html: node.html }} /></p>;
             },
           )
           }
+
+
+
+          {data.intro.edges.map(
+            (element) => {
+              const node = element.node;
+              return <p className="lead mb-5" key={node.id}><p dangerouslySetInnerHTML={{ __html: node.html }} /></p>;
+            },
+          )
+          }
+
+
+          <div className="contact-info mb-5">
+            <a href={`mailto:${config.email}`} className="contact-pill">
+              <i className="fas fa-envelope pr-2"></i>
+              <span>{config.email}</span>
+            </a>
+          </div>
 
 
           <div className="social-icons">
             {config.socialLinks.map(social => {
               const { icon, url } = social;
               return (
-                <a key={url} href={url}>
+                <a key={url} href={url} aria-label={social.name || 'Social Link'}>
                   <i className={`fab ${icon}`}></i>
                 </a>
               );
@@ -48,14 +63,14 @@ const IndexPage = ({ location, data }) => (
         </div>
       </section>
 
-      <hr className="m-0"/>
+      <hr className="m-0" />
 
-      <Jobs data={data.jobs}/>
+      <Jobs data={data.jobs} />
 
-      <hr className="m-0"/>
-      <Education data={data.education}/>
+      <hr className="m-0" />
+      <Education data={data.education} />
 
-      <hr className="m-0"/>
+      <hr className="m-0" />
 
       <section
         className="resume-section p-3 p-lg-5 d-flex align-items-center"
@@ -85,6 +100,22 @@ const IndexPage = ({ location, data }) => (
           <ul className="fa-ul mb-0">
             <li>
               <i className="fa-li fa fa-cube"></i>
+              OpenStack
+            </li>
+            <li>
+              <i className="fa-li fa fa-cube"></i>
+              Bash
+            </li>
+            <li>
+              <i className="fa-li fa fa-cube"></i>
+              Concourse CI
+            </li>
+            <li>
+              <i className="fa-li fa fa-cube"></i>
+              Machine Learning
+            </li>
+            <li>
+              <i className="fa-li fa fa-cube"></i>
               Python - Flask, Pandas, FastAPI
             </li>
             <li>
@@ -99,12 +130,11 @@ const IndexPage = ({ location, data }) => (
               <i className="fa-li fa fa-cube"></i>
               ANTLR
             </li>
-
           </ul>
         </div>
       </section>
 
-      <hr className="m-0"/>
+      <hr className="m-0" />
 
       <section
         className="resume-section p-3 p-lg-5 d-flex align-items-center"
@@ -121,18 +151,18 @@ const IndexPage = ({ location, data }) => (
         </div>
       </section>
 
-      <hr className="m-0"/>
-      <Awards data={data.awards}/>
+      <hr className="m-0" />
+      <Awards data={data.awards} />
     </div>
   </Layout>
 );
 
 export const query = graphql`
   {
-    jobs: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/jobs/"}},sort:{
-        fields: [frontmatter___date]
-        order: DESC
-    }) {
+    jobs: allMarkdownRemark(
+    filter: {fileAbsolutePath: {regex: "/jobs/"}}
+    sort: {frontmatter: {date: DESC}}
+  ) {
       edges {
         node {
           fileAbsolutePath
@@ -162,17 +192,21 @@ export const query = graphql`
           fileAbsolutePath
           id
           frontmatter {
-          awards
-          certifications
+          awards {
+            award
+          }
+          certifications {
+            certification
+          }
           }
           html
         }
       }
     }
-    education: allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/education/"}},sort:{
-      fields: [frontmatter___date]
-      order: DESC
-  }) {
+    education: allMarkdownRemark(
+    filter: {fileAbsolutePath: {regex: "/education/"}}
+    sort: {frontmatter: {date: DESC}}
+  ) {
       edges {
         node {
           fileAbsolutePath
